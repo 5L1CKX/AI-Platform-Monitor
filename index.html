@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Platform Monitor</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+         background: #0f1117; color: #e2e8f0; padding: 32px 16px; line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; color: #7dd3fc; border-bottom: 2px solid #1e3a5f;
+       padding-bottom: 12px; margin: 0 0 24px; }
+  h2 { font-size: 1.2rem; color: #94a3b8; text-transform: uppercase; letter-spacing: .05em;
+       margin: 32px 0 12px; border-left: 3px solid #3b82f6; padding-left: 10px; }
+  h3 { font-size: 1rem; color: #7dd3fc; margin: 20px 0 8px; }
+  p { margin-bottom: 10px; color: #cbd5e1; }
+  a { color: #60a5fa; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: #f1f5f9; }
+  hr { border: none; border-top: 1px solid #1e293b; margin: 24px 0; }
+  em { color: #94a3b8; font-style: normal; font-size: .85rem; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: .875rem; }
+  th { background: #1e293b; color: #94a3b8; text-align: left;
+       padding: 10px 12px; border-bottom: 2px solid #334155; font-weight: 600; }
+  td { padding: 9px 12px; border-bottom: 1px solid #1e293b; vertical-align: top; }
+  tr:hover td { background: #111827; }
+  ul, ol { padding-left: 24px; margin-bottom: 12px; }
+  li { color: #cbd5e1; margin-bottom: 6px; }
+  .green  { color: #4ade80; }
+  .yellow { color: #fbbf24; }
+  .red    { color: #f87171; }
+  .up     { color: #4ade80; font-weight: bold; }
+  .down   { color: #f87171; font-weight: bold; }
+  .warn   { color: #fbbf24; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+<hr>
+<h1>AI Platform Monitor — неделя 08.05–15.05.2026</h1>
+
+<h2>1. Сводка</h2>
+
+<table><thead><tr><th>Платформа</th><th>Активность</th><th>Главный сигнал</th></tr></thead><tbody><tr><td>Vertex AI</td><td><span class="green">🟢</span></td><td>Углубление интеграции LLM в SQL и Data Cloud.</td></tr><tr><td>AWS Bedrock</td><td><span class="green">🟢</span></td><td>Фокус на защищенности агентов (MCP) и real-time голосе.</td></tr><tr><td>Azure Foundry</td><td><span class="yellow">🟡</span></td><td>Масштабирование локальных решений и новых моделей.</td></tr><tr><td>AutoGen</td><td><span class="red">🔴</span></td><td>Отсутствие обновлений в отчетный период.</td></tr><tr><td>AgentForce</td><td><span class="green">🟢</span></td><td>Внедрение Git-native практик и новых инструментов для CI/CD.</td></tr><tr><td>LangGraph</td><td><span class="green">🟢</span></td><td>Официальный релиз стабильных версий всех компонентов.</td></tr><tr><td>n8n</td><td><span class="green">🟢</span></td><td>Крупная инвестиция от SAP и нативная интеграция в enterprise-контур.</td></tr></tbody></table>
+<h2>2. Изменения по критериям топологии</h2>
+
+<table><thead><tr><th>Критерий</th><th>Vertex AI</th><th>AWS Bedrock</th><th>Azure Foundry</th><th>AutoGen</th><th>AgentForce</th><th>LangGraph</th><th>n8n</th></tr></thead><tbody><tr><td>Multi-tenancy</td><td>-</td><td><span class="up">↑</span></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Self-host</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Code+No-code</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Git-native dev</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span></td><td>-</td><td>-</td></tr><tr><td>Indep. deploy</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span></td><td>-</td><td>-</td></tr><tr><td>Indep. scale</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Unified API+контр</td><td>-</td><td><span class="up">↑</span></td><td>-</td><td>-</td><td><span class="up">↑</span></td><td>-</td><td>-</td></tr><tr><td>LLM routing</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span></td><td>-</td><td>-</td></tr><tr><td>Secrets/tenant</td><td>-</td><td><span class="up">↑</span></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Prod-ops</td><td>-</td><td><span class="up">↑</span></td><td>-</td><td>-</td><td><span class="up">↑</span></td><td>-</td><td>-</td></tr></tbody></table>
+<h2>3. Детали по платформам</h2>
+
+<strong>Vertex AI</strong>: Google активно развивает парадигму агентов через Gemini Live и внедряет AI прямо в уровень работы с данными (SQL). Упор сделан на Enterprise-сектор и цифровую медицину.
+<p>Сигналы: LLM-powered SQL функции, <a href="https://cloud.google.com/blog/products/data-analytics/whats-new-with-google-data-cloud/" target="_blank">What’s new with Google Data Cloud</a></p>
+
+<strong>AWS Bedrock</strong>: AWS сфокусировались на безопасности агентов, внедряя управление через Chrome-политики и поддержку MCP для Cisco-решений. Также представлены новые возможности для real-time голосовых агентов.
+<p>Сигналы: Security for MCP, <a href="https://aws.amazon.com/blogs/machine-learning/securing-ai-agents-how-aws-and-cisco-ai-defense-scale-mcp-and-a2a-deployments/" target="_blank">Securing AI agents</a></p>
+
+<strong>Azure Foundry</strong>: Платформа достигла стабильности в ряде компонентов, включая Foundry Local, и обновила стек поддерживаемых моделей. Фокус сместился на инструменты разработки и визуализации для AI.
+<p>Сигналы: Foundry Local 1.1 GA, <a href="https://devblogs.microsoft.com/foundry/foundry-local-v1-1/" target="_blank">Foundry Local 1.1: Live Transcription</a></p>
+
+<strong>AutoGen</strong>: В данный период обновлений не зафиксировано.
+<p>Сигналы: Нет данных. <a href="https://github.com/microsoft/autogen" target="_blank">GitHub</a></p>
+
+<strong>AgentForce</strong>: Salesforce совершила прорыв в сторону Developer Experience, внедрив версионируемый метаданный и human-readable скрипты. Также улучшена визуализация отладки через AgentLens.
+<p>Сигналы: New Metadata Lifecycle, <a href="https://developer.salesforce.com/blogs/2026/05/new-agentforce-metadata-and-development-lifecycle" target="_blank">Agentforce Metadata</a></p>
+
+<strong>LangGraph</strong>: Произошел переход от альфа-версий к официальным релизам всей экосистемы. Улучшена стабильность чекпоинтов для SQL-хранилищ.
+<p>Сигналы: Стабильный релиз 1.2.0, <a href="https://github.com/langchain-ai/langgraph/releases" target="_blank">LangGraph Releases</a></p>
+
+<strong>n8n</strong>: Получение инвестиций от SAP и нативная интеграция в их экосистему подтверждают зрелость n8n как Enterprise-инструмента. Платформа продолжает укреплять позиции в крупном корпоративном секторе.
+<p>Сигналы: Инвестиция $5.2bn от SAP, <a href="https://blog.n8n.io/n8n-sap/" target="_blank">n8n и SAP</a></p>
+
+<h2>4. Угрозы для SL2</h2>
+
+<table><thead><tr><th>Угроза</th><th>Платформа</th><th>Критерий SL2</th><th>Приоритет</th></tr></thead><tbody><tr><td>Внедрение Git-native метаданных в Enterprise</td><td>AgentForce</td><td>Git-native dev</td><td>Высокий</td></tr><tr><td>Глубокая интеграция агентов в SAP (Enterprise lock-in)</td><td>n8n</td><td>Multi-tenancy</td><td>Средний</td></tr><tr><td>Улучшение защиты через MCP-стандарты</td><td>AWS Bedrock</td><td>Prod-ops</td><td>Средний</td></tr></tbody></table>
+<h2>5. Выводы для команды</h2>
+
+<ol><li>Конкуренты начали массово копировать паттерны CI/CD и Git-native разработки (Salesforce), что сокращает наше технологическое преимущество в простоте деплоя. Необходимо ускорить развитие инструментов визуализации потоков, похожих на AgentLens.</li><li>Интеграция n8n в SAP доказывает, что enterprise-клиенты ищут платформы, которые уже являются частью их экосистемы; нужно сфокусироваться на коннекторах для таких же систем.</li><li>Безопасность (MCP) становится общим стандартом для всех крупных облаков — следует убедиться, что SL2 поддерживает последние спецификации MCP для сохранения совместимости.</li></ol>
+<hr>
+<em>Сгенерировано: 15.05.2026, 16:35:41 | Источники: RSS + GitHub Releases + Gemini 2.5 Flash</em>
+<hr>
+</div>
+</body>
+</html>
