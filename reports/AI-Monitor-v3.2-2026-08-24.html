@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Platform Monitor v3.2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+         background: #0f1117; color: #e2e8f0; padding: 32px 16px; line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; color: #7dd3fc; border-bottom: 2px solid #1e3a5f;
+       padding-bottom: 12px; margin: 0 0 24px; }
+  h2 { font-size: 1.2rem; color: #94a3b8; text-transform: uppercase; letter-spacing: .05em;
+       margin: 32px 0 12px; border-left: 3px solid #3b82f6; padding-left: 10px; }
+  h3 { font-size: 1rem; color: #7dd3fc; margin: 20px 0 8px; }
+  p { margin-bottom: 10px; color: #cbd5e1; }
+  a { color: #60a5fa; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: #f1f5f9; }
+  hr { border: none; border-top: 1px solid #1e293b; margin: 24px 0; }
+  em { color: #94a3b8; font-style: normal; font-size: .85rem; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: .875rem; }
+  th { background: #1e293b; color: #94a3b8; text-align: left;
+       padding: 10px 12px; border-bottom: 2px solid #334155; font-weight: 600; }
+  td { padding: 9px 12px; border-bottom: 1px solid #1e293b; vertical-align: top; }
+  tr:hover td { background: #111827; }
+  ul, ol { padding-left: 24px; margin-bottom: 12px; }
+  li { color: #cbd5e1; margin-bottom: 6px; }
+  pre { background: #1e293b; padding: 12px 14px; border-radius: 6px; overflow-x: auto; margin: 12px 0; }
+  pre code { background: none; color: #e2e8f0; font-size: .85rem; white-space: pre; padding: 0; }
+  code { background: #1e293b; color: #7dd3fc; padding: 1px 5px; border-radius: 4px; font-size: .85rem; }
+  blockquote { border-left: 3px solid #3b82f6; padding: 6px 14px; margin: 12px 0;
+               color: #94a3b8; background: #111827; }
+  .green  { color: #4ade80; }
+  .yellow { color: #fbbf24; }
+  .red    { color: #f87171; }
+  .up     { color: #4ade80; font-weight: bold; }
+  .down   { color: #f87171; font-weight: bold; }
+  .warn   { color: #fbbf24; font-weight: bold; }
+  .score-crit { color: #f87171; font-weight: bold; font-size: 1.05rem; }
+  .score-warn { color: #fbbf24; font-weight: bold; }
+  .score-ok   { color: #4ade80; }
+</style>
+</head>
+<body>
+<div class="container">
+<div id='archive-link' style='display:flex;justify-content:flex-end;margin-bottom:8px'><a href='/AI-Platform-Monitor/archive.html?d=2026-08-24' target='_top' style='font-size:.9rem;color:#60a5fa;text-decoration:none'>📑 Архив отчётов →</a></div>
+<script>if(window.self!==window.top){var a=document.getElementById('archive-link');if(a)a.style.display='none';}</script>
+<h1>AI Platform Monitor v3.2 — неделя 17.08–24.08.2026</h1>
+
+<h2>1. Сводка</h2>
+
+<table><thead><tr><th>Платформа</th><th>Активность</th><th>Главный сигнал</th></tr></thead><tbody><tr><td>Vertex AI</td><td><span class="green">🟢</span></td><td>Расширение Google Antigravity для enterprise с улучшенной делегацией агентов и governance</td></tr><tr><td>AWS Bedrock</td><td><span class="green">🟢</span></td><td>GA AgentCore Gateway для governed tool access и cross-Region inference для OpenAI GPT-5.6</td></tr><tr><td>Azure Foundry</td><td><span class="yellow">🟡</span></td><td>Интеграция пяти новых возможностей Claude (structured outputs, web search, MCP connector)</td></tr><tr><td>AutoGen</td><td><span class="green">🟢</span></td><td>Появление middleware для защиты памяти агентов (Agent Memory Guard) и trust-инфраструктуры (AgentGraph)</td></tr><tr><td>AgentForce</td><td><span class="green">🟢</span></td><td>Запуск Data 360 Headless для расширения возможностей агентов за пределы Salesforce</td></tr><tr><td>LangGraph</td><td><span class="green">🟢</span></td><td>Релизы SDK 0.4.3 и интеграций с новыми LLM-провайдерами (Perplexity, Fireworks)</td></tr><tr><td>n8n</td><td><span class="green">🟢</span></td><td>Интеграция с Amazon Bedrock AgentCore для multi-agent команд с общей памятью</td></tr><tr><td>NetBox</td><td><span class="green">🟢</span></td><td>Релиз v4.7.0-beta1 с улучшениями UI и обсуждениями по backup restore</td></tr><tr><td>GLPI</td><td><span class="red">🔴</span></td><td>Нет обновлений</td></tr><tr><td>iTop</td><td><span class="red">🔴</span></td><td>Нет обновлений</td></tr><tr><td>Ralph</td><td><span class="green">🟢</span></td><td>Прекращение поддержки deb-пакетов, фокус на Docker-дистрибуции</td></tr><tr><td>Snipe-IT</td><td><span class="green">🟢</span></td><td>Патч-релизы v8.7.1 и v8.7.2 с фиксами импортера и SCIM</td></tr><tr><td>OCS Inventory</td><td><span class="red">🔴</span></td><td>Нет обновлений</td></tr></tbody></table>
+<p style="font-size:.8rem;color:#64748b;margin:-8px 0 16px">🟢 активная неделя (3+ обновлений) &nbsp;·&nbsp; 🟡 умеренная (1-2) &nbsp;·&nbsp; 🔴 тишина</p>
+<h2>2. Изменения по критериям топологии</h2>
+
+<table><thead><tr><th>Критерий</th><th>Vertex AI</th><th>AWS Bedrock</th><th>Azure Foundry</th><th>AutoGen</th><th>AgentForce</th><th>LangGraph</th><th>n8n</th><th>NetBox</th><th>Ralph</th><th>Snipe-IT</th></tr></thead><tbody><tr><td>Multi-tenancy</td><td>-</td><td><span class="up">↑</span> (AgentCore Gateway)</td><td>-</td><td>-</td><td><span class="up">↑</span> (Data 360 Headless)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Self-host</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Code+No-code</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Git-native dev</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Indep. deploy</td><td>-</td><td><span class="up">↑</span> (AgentCore microVM)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Indep. scale</td><td>-</td><td><span class="up">↑</span> (AgentCore microVM)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Unified API + контракт</td><td>-</td><td>-</td><td><span class="up">↑</span> (Claude MCP connector)</td><td>-</td><td><span class="up">↑</span> (Data 360 Headless)</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>LLM routing</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Secrets/tenant</td><td>-</td><td><span class="up">↑</span> (AgentCore Gateway)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Prod-ops</td><td><span class="up">↑</span> (Antigravity governance)</td><td><span class="up">↑</span> (AgentCore Gateway audit)</td><td>-</td><td><span class="up">↑</span> (Agent Memory Guard)</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>-</td></tr></tbody></table>
+<p style="font-size:.8rem;color:#64748b;margin:-8px 0 16px"><span style="color:#4ade80;font-weight:bold">↑</span> улучшила позицию &nbsp;·&nbsp; <span style="color:#f87171;font-weight:bold">↓</span> ухудшила &nbsp;·&nbsp; <span style="color:#fbbf24;font-weight:bold">⚠</span> анонс / в разработке &nbsp;·&nbsp; <strong>-</strong> без изменений</p>
+<h2>3. Детали по платформам</h2>
+
+<strong>Vertex AI</strong>: Google расширил Antigravity для enterprise-клиентов, добавив governance-контроли и улучшенную делегацию задач между агентами (DP). Это усиливает критерий Prod-ops за счёт встроенных механизмов аудита и контроля доступа, а также улучшает Multi-tenancy через централизованное управление агентами (CP). Для SL2 AI Platform это давление на GAP G3 (observability) и G4 (FinOps), так как Vertex AI теперь предлагает managed-решения с встроенным трейсингом и cost tracking, которые у нас требуют дополнительной интеграции (SP). Однако Antigravity остаётся closed SaaS, что сохраняет наше преимущество для self-host клиентов.
+<p>Сигналы: <a href="https://cloud.google.com/blog/products/ai-machine-learning/expanding-google-antigravity-for-enterprise-customers/" target="_blank">Expanding Google Antigravity</a>, <a href="https://cloud.google.com/blog/products/ai-machine-learning/how-agents-can-delegate-better/" target="_blank">How agents can delegate better</a></p>
+
+<strong>AWS Bedrock</strong>: AWS выпустил в GA AgentCore Gateway для governed tool access и добавил cross-Region inference для OpenAI GPT-5.6 моделей (DP). Это закрывает критерии Indep. scale (изоляция агентов в microVM) и Secrets/tenant (governed tool access), а также улучшает Prod-ops через аудит вызовов инструментов (CP). Для SL2 AI Platform это прямое давление на GAP G3 (observability) и G4 (FinOps), так как Bedrock теперь предлагает managed-решения с встроенным cost tracking и аудитом, которые у нас требуют ручной настройки (SP). Однако Bedrock остаётся closed SaaS с vendor lock-in, что сохраняет наше преимущество для self-host клиентов.
+<p>Сигналы: <a href="https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-tool-access-with-amazon-bedrock-agentcore-gateway/" target="_blank">Govern AI agent tool access with Amazon Bedrock AgentCore Gateway</a>, <a href="https://aws.amazon.com/blogs/machine-learning/introducing-cross-region-inference-for-openai-gpt-5-6-models-on-amazon-bedrock/" target="_blank">Cross-Region inference for OpenAI GPT-5.6</a></p>
+
+<strong>Azure Foundry</strong>: Microsoft интегрировал пять новых возможностей Claude, включая structured outputs, web search и MCP connector (DP). Это усиливает критерий Unified API + контракт за счёт MCP connector, который позволяет агентам взаимодействовать через стандартный протокол (CP). Для SL2 AI Platform это давление на GAP G2 (Agent Protocol lock-in), так как MCP может стать новым стандартом для межагентного взаимодействия, а мы пока не поддерживаем его (SP). Однако Foundry остаётся closed платформой, что ограничивает её привлекательность для self-host клиентов.
+<p>Сигналы: <a href="https://devblogs.microsoft.com/foundry/five-new-claude-capabilities-now-available-in-foundry/" target="_blank">Five new Claude capabilities in Microsoft Foundry</a></p>
+
+<strong>AutoGen</strong>: Сообщество выпустило Agent Memory Guard — middleware для защиты памяти агентов от инъекций и утечек данных, а также AgentGraph — инфраструктуру для trust verification (DP). Это усиливает критерий Prod-ops за счёт улучшенной безопасности и observability межагентных взаимодействий (CP). Для SL2 AI Platform это давление на GAP G3 (observability), так как AutoGen теперь предлагает решения для защиты памяти и верификации агентов, которые у нас требуют дополнительной разработки (SP). Однако AutoGen находится в maintenance mode, что ограничивает его конкурентоспособность.
+<p>Сигналы: <a href="https://github.com/microsoft/autogen/discussions/7792" target="_blank">Agent Memory Guard</a>, <a href="https://github.com/microsoft/autogen/discussions/7476" target="_blank">AgentGraph</a></p>
+
+<strong>AgentForce</strong>: Salesforce запустил Data 360 Headless для расширения возможностей агентов за пределы Salesforce (DP). Это усиливает критерии Multi-tenancy и Unified API + контракт за счёт предоставления headless-доступа к данным и инструментам через стандартные API (CP). Для SL2 AI Platform это давление на GAP G2 (Agent Protocol lock-in) и G7 (зрелость), так как AgentForce теперь предлагает более зрелую экосистему интеграций и протоколов (SP). Однако платформа остаётся закрытой и vendor-locked.
+<p>Сигналы: <a href="https://www.salesforce.com/blog/data-360-headless-extend-the-power-of-data-360-to-any-agent-app-or-dev-tool/" target="_blank">Data 360 Headless</a></p>
+
+<strong>LangGraph</strong>: Выпущены обновления SDK 0.4.3 и интеграции с новыми LLM-провайдерами (Perplexity, Fireworks) (DP). Это улучшает критерий LLM routing за счёт расширения списка поддерживаемых моделей, но не меняет топологию платформы кардинально (CP). Для SL2 AI Platform это не создаёт прямого давления, так как LangGraph фокусируется на orchestration, а не на runtime-платформе (SP). Однако расширение экосистемы может усилить конкуренцию в будущем.
+<p>Сигналы: <a href="https://github.com/langchain-ai/langgraph/releases/tag/sdk%3D%3D0.4.3" target="_blank">langgraph-sdk==0.4.3</a>, <a href="https://github.com/langchain-ai/langchain/releases/tag/langchain-perplexity%3D%3D1.4.1" target="_blank">langchain-perplexity==1.4.1</a></p>
+
+<strong>n8n</strong>: Добавлена интеграция с Amazon Bedrock AgentCore для создания multi-agent команд с общей памятью (DP). Это улучшает критерий Prod-ops за счёт встроенной observability и управления памятью (CP). Для SL2 AI Platform это давление на GAP G3 (observability), так как n8n теперь предлагает managed-решение с лучшей поддержкой межагентных взаимодействий (SP). Однако n8n остаётся low-code платформой, что ограничивает её привлекательность для enterprise-разработчиков.
+<p>Сигналы: <a href="https://blog.n8n.io/node-spotlight-amazon-bedrock-agentcore/" target="_blank">Build multi-agent teams with Amazon Bedrock AgentCore</a></p>
+
+<strong>NetBox</strong>: Выпущен релиз v4.7.0-beta1 с улучшениями UI и обсуждениями по backup restore (DP). Это не затрагивает напрямую критерии SL2 AI Platform, так как NetBox — это IT-инфраструктурный инструмент, а не AI-платформа (CP). Для нас это не создаёт давления (SP).
+<p>Сигналы: <a href="https://github.com/netbox-community/netbox/releases/tag/v4.7.0-beta1" target="_blank">v4.7.0-beta1</a></p>
+
+<strong>Ralph</strong>: Прекращена поддержка deb-пакетов, фокус смещён на Docker-дистрибуцию (DP). Это не затрагивает критерии SL2 AI Platform напрямую, так как Ralph — это asset management система (CP). Для нас это не создаёт давления (SP).
+<p>Сигналы: <a href="https://github.com/allegro/ralph/releases/tag/20260819.1" target="_blank">20260819.1</a></p>
+
+<strong>Snipe-IT</strong>: Выпущены патч-релизы v8.7.1 и v8.7.2 с фиксами импортера и SCIM (DP). Это не затрагивает критерии SL2 AI Platform напрямую, так как Snipe-IT — это IT-инвентаризационная система (CP). Для нас это не создаёт давления (SP).
+<p>Сигналы: <a href="https://github.com/grokability/snipe-it/releases/tag/v8.7.2" target="_blank">v8.7.2</a></p>
+
+<h2>4. Реестр сигналов</h2>
+
+<table><thead><tr><th>ID</th><th>Платформа</th><th>Дата</th><th>Тип</th><th>Сигнал</th><th>Зрелость</th><th>Уверенность</th></tr></thead><tbody><tr><td>VTX-001</td><td>Vertex AI</td><td>20.08.2026</td><td>blog</td><td>Расширение Antigravity для enterprise с governance-контролями</td><td>GA</td><td>высокая</td></tr><tr><td>BDR-001</td><td>AWS Bedrock</td><td>21.08.2026</td><td>blog</td><td>GA AgentCore Gateway для governed tool access</td><td>GA</td><td>высокая</td></tr><tr><td>BDR-002</td><td>AWS Bedrock</td><td>20.08.2026</td><td>blog</td><td>Cross-Region inference для OpenAI GPT-5.6 моделей</td><td>GA</td><td>высокая</td></tr><tr><td>AZR-001</td><td>Azure Foundry</td><td>17.08.2026</td><td>blog</td><td>Интеграция пяти новых возможностей Claude (structured outputs, MCP connector)</td><td>GA</td><td>высокая</td></tr><tr><td>AUT-001</td><td>AutoGen</td><td>23.08.2026</td><td>github</td><td>Выпуск Agent Memory Guard middleware</td><td>beta</td><td>средняя</td></tr><tr><td>AUT-002</td><td>AutoGen</td><td>23.08.2026</td><td>github</td><td>Запуск AgentGraph для trust verification</td><td>beta</td><td>средняя</td></tr><tr><td>AGF-001</td><td>AgentForce</td><td>20.08.2026</td><td>blog</td><td>Запуск Data 360 Headless для headless-доступа к данным</td><td>GA</td><td>высокая</td></tr><tr><td>LGR-001</td><td>LangGraph</td><td>19.08.2026</td><td>github</td><td>Релиз SDK 0.4.3</td><td>GA</td><td>высокая</td></tr><tr><td>N8N-001</td><td>n8n</td><td>20.08.2026</td><td>blog</td><td>Интеграция с Amazon Bedrock AgentCore для multi-agent команд</td><td>GA</td><td>высокая</td></tr><tr><td>NTB-001</td><td>NetBox</td><td>17.08.2026</td><td>github</td><td>Релиз v4.7.0-beta1</td><td>beta</td><td>высокая</td></tr><tr><td>RAL-001</td><td>Ralph</td><td>19.08.2026</td><td>github</td><td>Прекращение поддержки deb-пакетов</td><td>GA</td><td>высокая</td></tr><tr><td>SNI-001</td><td>Snipe-IT</td><td>19.08.2026</td><td>github</td><td>Патч-релиз v8.7.2 с фиксами импортера</td><td>GA</td><td>высокая</td></tr></tbody></table>
+<h2>5. Конкурентные векторы</h2>
+
+<table><thead><tr><th>Платформа</th><th>Тип давления</th><th>Критерий SL2 AI Platform</th><th>GAP</th><th>Срок воздействия</th></tr></thead><tbody><tr><td>AWS Bedrock</td><td>прямой конкурент</td><td>Indep. scale, Secrets/tenant, Prod-ops</td><td>G3, G4</td><td>сейчас</td></tr><tr><td>Vertex AI</td><td>прямой конкурент</td><td>Prod-ops</td><td>G3, G4</td><td>3м</td></tr><tr><td>Azure Foundry</td><td>экосистемное давление</td><td>Unified API + контракт</td><td>G2</td><td>6м</td></tr><tr><td>AgentForce</td><td>экосистемное давление</td><td>Multi-tenancy, Unified API + контракт</td><td>G2, G7</td><td>6м</td></tr><tr><td>AutoGen</td><td>стандартизация</td><td>Prod-ops</td><td>G3</td><td>12м+</td></tr></tbody></table>
+<h2>6. Скоринг угроз</h2>
+
+<table><thead><tr><th>ID</th><th>Критерий</th><th>Платформа</th><th>I (1-3)</th><th>P (1-3)</th><th>U (1-3)</th><th>Score</th><th>GAP SL2 AI Platform</th></tr></thead><tbody><tr><td>THR-001</td><td>Indep. scale, Secrets/tenant</td><td>AWS Bedrock</td><td><span class="score-ok">3</span></td><td><span class="score-ok">3</span></td><td><span class="score-ok">3</span></td><td><span class="score-crit">27</span></td><td>G3, G4</td></tr><tr><td>THR-002</td><td>Prod-ops</td><td>Vertex AI</td><td><span class="score-ok">2</span></td><td><span class="score-ok">3</span></td><td><span class="score-ok">2</span></td><td><span class="score-warn">12</span></td><td>G3, G4</td></tr><tr><td>THR-003</td><td>Unified API + контракт</td><td>Azure Foundry</td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">8</span></td><td>G2</td></tr><tr><td>THR-004</td><td>Multi-tenancy, Unified API</td><td>AgentForce</td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">8</span></td><td>G2, G7</td></tr></tbody></table>
+<p style="font-size:.8rem;color:#64748b;margin:-8px 0 16px"><span style="color:#f87171;font-weight:bold">🔴 Score &ge; 18</span> — критично &nbsp;·&nbsp; <span style="color:#fbbf24;font-weight:bold">🟡 9–17</span> — следим &nbsp;·&nbsp; <span style="color:#4ade80">🟢 &lt; 9</span> — норма &nbsp;·&nbsp; Score&nbsp;=&nbsp;I&nbsp;&times;&nbsp;P&nbsp;&times;&nbsp;U</p>
+<h2>7. Рекомендации команде</h2>
+
+<table><thead><tr><th>Рекомендация</th><th>Владелец</th><th>Дедлайн</th><th>KPI</th></tr></thead><tbody><tr><td>Внедрить OpenTelemetry для inter-agent tracing и закрыть GAP G3</td><td>Platform team</td><td>15.09.2026</td><td>100% агентов поддерживают сквозной trace-id в логах</td></tr><tr><td>Добавить cost tracking per org/agent/model для паритета по FinOps (GAP G4)</td><td>FinOps team</td><td>01.10.2026</td><td>Dashboard с разбивкой затрат по агентам и моделям</td></tr><tr><td>Начать проработку A2A-адаптера для совместимости с MCP (GAP G2)</td><td>Protocol team</td><td>01.11.2026</td><td>Документ с roadmap интеграции A2A/MCP</td></tr></tbody></table>
+<h2>8. Self-check</h2>
+
+<ul><li><strong>Непроверенные источники этой недели</strong>: Новости по GLPI, iTop и OCS Inventory отсутствовали, что ожидаемо, так как это IT-инфраструктурные инструменты, а не AI-платформы.</li><li><strong>Слабые допущения</strong>: Предположение о том, что MCP connector в Azure Foundry станет стандартом, основано на текущем тренде к стандартизации межагентных протоколов, но это не гарантировано.</li><li><strong>Что отслеживать на следующей неделе</strong>:</li></ul>  1. Появление новых managed-решений для observability (например, self-hosted Langfuse) у конкурентов.
+<p>  2. Движение в сторону стандартизации Agent Protocol (A2A) и его влияние на GAP G2.</p>
+
+<hr>
+<em>Сгенерировано: 24.08.2026, 06:01:43 МСК | Источники: RSS + GitHub Releases + Mistral Large | AI Platform Monitor v3.2</em>
+<hr>
+</div>
+</body>
+</html>
