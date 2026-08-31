@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Platform Monitor v3.2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+         background: #0f1117; color: #e2e8f0; padding: 32px 16px; line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; color: #7dd3fc; border-bottom: 2px solid #1e3a5f;
+       padding-bottom: 12px; margin: 0 0 24px; }
+  h2 { font-size: 1.2rem; color: #94a3b8; text-transform: uppercase; letter-spacing: .05em;
+       margin: 32px 0 12px; border-left: 3px solid #3b82f6; padding-left: 10px; }
+  h3 { font-size: 1rem; color: #7dd3fc; margin: 20px 0 8px; }
+  p { margin-bottom: 10px; color: #cbd5e1; }
+  a { color: #60a5fa; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: #f1f5f9; }
+  hr { border: none; border-top: 1px solid #1e293b; margin: 24px 0; }
+  em { color: #94a3b8; font-style: normal; font-size: .85rem; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: .875rem; }
+  th { background: #1e293b; color: #94a3b8; text-align: left;
+       padding: 10px 12px; border-bottom: 2px solid #334155; font-weight: 600; }
+  td { padding: 9px 12px; border-bottom: 1px solid #1e293b; vertical-align: top; }
+  tr:hover td { background: #111827; }
+  ul, ol { padding-left: 24px; margin-bottom: 12px; }
+  li { color: #cbd5e1; margin-bottom: 6px; }
+  pre { background: #1e293b; padding: 12px 14px; border-radius: 6px; overflow-x: auto; margin: 12px 0; }
+  pre code { background: none; color: #e2e8f0; font-size: .85rem; white-space: pre; padding: 0; }
+  code { background: #1e293b; color: #7dd3fc; padding: 1px 5px; border-radius: 4px; font-size: .85rem; }
+  blockquote { border-left: 3px solid #3b82f6; padding: 6px 14px; margin: 12px 0;
+               color: #94a3b8; background: #111827; }
+  .green  { color: #4ade80; }
+  .yellow { color: #fbbf24; }
+  .red    { color: #f87171; }
+  .up     { color: #4ade80; font-weight: bold; }
+  .down   { color: #f87171; font-weight: bold; }
+  .warn   { color: #fbbf24; font-weight: bold; }
+  .score-crit { color: #f87171; font-weight: bold; font-size: 1.05rem; }
+  .score-warn { color: #fbbf24; font-weight: bold; }
+  .score-ok   { color: #4ade80; }
+</style>
+</head>
+<body>
+<div class="container">
+<div id='archive-link' style='display:flex;justify-content:flex-end;margin-bottom:8px'><a href='/AI-Platform-Monitor/archive.html?d=2026-08-31' target='_top' style='font-size:.9rem;color:#60a5fa;text-decoration:none'>📑 Архив отчётов →</a></div>
+<script>if(window.self!==window.top){var a=document.getElementById('archive-link');if(a)a.style.display='none';}</script>
+<h1>AI Platform Monitor v3.2 — неделя 24.08–31.08.2026</h1>
+
+<hr>
+
+<h2>1. Сводка</h2>
+
+<table><thead><tr><th>Платформа</th><th>Активность</th><th>Главный сигнал</th></tr></thead><tbody><tr><td>Vertex AI</td><td><span class="green">🟢</span></td><td>FinOps для AI-агентов: гибкие модели биллинга и контроль затрат на уровне агентов</td></tr><tr><td>AWS Bedrock</td><td><span class="green">🟢</span></td><td>AgentCore Evaluations с поддержкой OpenTelemetry для кросс-фреймворковой оценки агентов</td></tr><tr><td>Azure Foundry</td><td><span class="red">🔴</span></td><td>нет изменений</td></tr><tr><td>AutoGen</td><td><span class="green">🟢</span></td><td>Интеграция с AlgoVoi для децентрализованных платежей и верификации транзакций в мультиагентных системах</td></tr><tr><td>AgentForce</td><td><span class="green">🟢</span></td><td>Новая метаданная модель с версионированием и CI/CD для агентов</td></tr><tr><td>LangGraph</td><td><span class="green">🟢</span></td><td>Альфа-релиз <code>langchain.mcp</code> для интеграции MCP-серверов как инструментов LangChain</td></tr><tr><td>n8n</td><td><span class="green">🟢</span></td><td>RBAC для AI-агентов: переход от статических ролей к задачно-ориентированным правилам доступа</td></tr><tr><td>NetBox</td><td><span class="green">🟢</span></td><td>Бета-релиз v4.7.0 с улучшениями для управления виртуальными машинами</td></tr><tr><td>GLPI</td><td><span class="red">🔴</span></td><td>нет изменений</td></tr><tr><td>iTop</td><td><span class="yellow">🟡</span></td><td>Бета-релиз 3.3.0 с миграцией устаревших JS-библиотек</td></tr><tr><td>Ralph</td><td><span class="red">🔴</span></td><td>нет изменений</td></tr><tr><td>Snipe-IT</td><td><span class="yellow">🟡</span></td><td>Обсуждение улучшений боковой панели навигации</td></tr><tr><td>OCS Inventory</td><td><span class="yellow">🟡</span></td><td>Релиз сервера 2.12.6 с исправлениями безопасности</td></tr></tbody></table>
+<hr>
+
+<p style="font-size:.8rem;color:#64748b;margin:-8px 0 16px">🟢 активная неделя (3+ обновлений) &nbsp;·&nbsp; 🟡 умеренная (1-2) &nbsp;·&nbsp; 🔴 тишина</p>
+<h2>2. Изменения по критериям топологии</h2>
+
+<table><thead><tr><th>Критерий</th><th>Vertex AI</th><th>AWS Bedrock</th><th>Azure Foundry</th><th>AutoGen</th><th>AgentForce</th><th>LangGraph</th><th>n8n</th><th>NetBox</th><th>iTop</th><th>Snipe-IT</th><th>OCS Inventory</th></tr></thead><tbody><tr><td>Multi-tenancy</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Self-host</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span> (улучшение управления VM)</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Code+No-code</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span> (MCP-интеграция)</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Git-native dev</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span> (метаданные + CI/CD)</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Indep. deploy</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Indep. scale</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Unified API + контракт</td><td>-</td><td><span class="up">↑</span> (OpenTelemetry в AgentCore)</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span> (MCP как стандарт)</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>LLM routing</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Secrets/tenant</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>н/п</td><td>н/п</td><td>н/п</td><td>н/п</td></tr><tr><td>Prod-ops</td><td><span class="up">↑</span> (FinOps для агентов)</td><td><span class="up">↑</span> (AgentCore Evaluations)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span> (управление VM)</td><td>-</td><td>-</td><td><span class="up">↑</span> (безопасность)</td></tr></tbody></table>
+<hr>
+
+<p style="font-size:.8rem;color:#64748b;margin:-8px 0 16px"><span style="color:#4ade80;font-weight:bold">↑</span> улучшила позицию &nbsp;·&nbsp; <span style="color:#f87171;font-weight:bold">↓</span> ухудшила &nbsp;·&nbsp; <span style="color:#fbbf24;font-weight:bold">⚠</span> анонс / в разработке &nbsp;·&nbsp; <strong>-</strong> без изменений</p>
+<h2>3. Детали по платформам</h2>
+
+<strong>Vertex AI</strong>:
+<p>На неделе Google анонсировал гибкие модели биллинга и контроль затрат для AI-агентов в Vertex AI, что позволяет клиентам точнее управлять расходами на уровне агентов (DP). Это усиливает позицию Vertex AI по критерию <strong>Prod-ops / FinOps</strong>, где SL2 AI Platform имеет GAP G4 (отсутствие cost tracking per org/agent/model) (CP). Для SL2 AI Platform это означает, что managed-конкурент предлагает более зрелое решение для финансового мониторинга, что может стать конкурентным преимуществом для enterprise-клиентов (SP). Однако Vertex AI остаётся closed SaaS, что не подходит для клиентов с требованиями к self-host и data residency.</p>
+<p>Сигналы: <a href="https://cloud.google.com/blog/products/ai-machine-learning/flexible-billing-and-cost-controls-for-agents-on-google-cloud/" target="_blank">FinOps for the AI era: New flexible billing and cost controls for agents</a></p>
+
+<hr>
+
+<strong>AWS Bedrock</strong>:
+<p>AWS представил <strong>Amazon Bedrock AgentCore Evaluations</strong>, который поддерживает OpenTelemetry для оценки агентов вне зависимости от фреймворка (LangGraph, LlamaIndex, OpenAI Agents SDK и др.) (DP). Это усиливает критерий <strong>Unified API + контракт</strong> у Bedrock, так как позволяет интегрировать агенты из разных экосистем через стандартный протокол (CP). Для SL2 AI Platform это затрагивает GAP G2 (несовместимость Agent Protocol с A2A) и G3 (отсутствие распределённого трейсинга межагентных взаимодействий), так как Bedrock демонстрирует зрелость в кросс-фреймворковой интеграции и observability (SP). Отслеживаем, как будет развиваться поддержка OpenTelemetry в Bedrock.</p>
+<p>Сигналы: <a href="https://aws.amazon.com/blogs/machine-learning/evaluate-any-agent-framework-with-amazon-bedrock-agentcore-evaluations/" target="_blank">Evaluate any agent framework with Amazon Bedrock AgentCore Evaluations</a></p>
+
+<hr>
+<strong>Azure Foundry</strong>:
+<p>Нет обновлений за неделю.</p>
+
+<hr>
+<strong>AutoGen</strong>:
+<p>Microsoft анонсировал интеграцию AutoGen с <strong>AlgoVoi Pay</strong> — децентрализованной платформой для платежей и верификации транзакций в мультиагентных системах (DP). Это расширяет возможности AutoGen в области <strong>Prod-ops / FinOps</strong> и <strong>Secrets/tenant</strong>, так как позволяет агентам взаимодействовать с внешними системами платежей с верификацией и аудитом (CP). Для SL2 AI Platform это не создаёт прямого давления, но показывает тренд на интеграцию с внешними системами управления транзакциями, что может быть актуально для клиентов с сложными бизнес-процессами (SP). Отслеживаем, как будет развиваться эта интеграция.</p>
+<p>Сигналы: <a href="https://github.com/microsoft/autogen/discussions/7898" target="_blank">AlgoVoi open Decision chain (Apache-2.0): identity, authority, policy, compliance, execution, close-out and verdict for AutoGen agents</a></p>
+
+<hr>
+<strong>AgentForce</strong>:
+<p>Salesforce анонсировал новую метаданную модель с версионированием и CI/CD для агентов, что упрощает управление жизненным циклом и развёртывание (DP). Это усиливает критерий <strong>Git-native dev</strong> у AgentForce, так как теперь агенты могут управляться через стандартные DevOps-процессы (CP). Для SL2 AI Platform это не создаёт прямого давления, так как наша платформа уже поддерживает git-native dev (GA), но показывает, что конкурент развивается в том же направлении (SP). Отслеживаем, как будет развиваться интеграция с внешними системами CI/CD.</p>
+<p>Сигналы: <a href="https://developer.salesforce.com/blogs/2026/08/new-agentforce-metadata-and-development-lifecycle-jp" target="_blank">新しいAgentforceメタデータと開発ライフサイクル</a></p>
+
+<hr>
+<strong>LangGraph</strong>:
+<p>LangChain выпустил альфа-версию <code>langchain.mcp</code> — адаптера, который преобразует любые MCP-серверы в инструменты LangChain (DP). Это усиливает критерий <strong>Unified API + контракт</strong> у LangGraph, так как позволяет интегрировать внешние MCP-серверы как инструменты для агентов (CP). Для SL2 AI Platform это затрагивает GAP G2 (несовместимость с A2A), так как MCP становится де-факто стандартом для интеграции инструментов в экосистеме AI-агентов (SP). Отслеживаем, как будет развиваться поддержка MCP в других фреймворках.</p>
+<p>Сигналы: <a href="https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.0a2" target="_blank">langchain==1.4.0a2</a></p>
+
+<hr>
+<strong>n8n</strong>:
+<p>n8n опубликовал статью о <strong>RBAC для AI-агентов</strong>, где обсуждается переход от статических ролей к задачно-ориентированным правилам доступа (DP). Это усиливает критерий <strong>Secrets/tenant</strong> у n8n, так как позволяет более гибко управлять правами доступа агентов (CP). Для SL2 AI Platform это не создаёт прямого давления, но показывает тренд на развитие систем управления доступом для агентов (SP). Отслеживаем, как будет развиваться функционал RBAC в n8n.</p>
+<p>Сигналы: <a href="https://blog.n8n.io/rbac-for-ai-agents/" target="_blank">RBAC for AI Agents: Why Static Roles Break and What Replaces Them</a></p>
+
+<hr>
+<strong>NetBox</strong>:
+<p>NetBox выпустил бета-версию v4.7.0 с улучшениями для управления виртуальными машинами, включая увеличение максимальной длины имени VM (DP). Это усиливает критерий <strong>Prod-ops</strong> у NetBox, так как расширяет возможности управления инфраструктурой (CP). Для SL2 AI Platform это не создаёт прямого давления, так как NetBox не является прямым конкурентом в нише AI-агентов (SP). Однако это показывает тренд на улучшение управления инфраструктурой, что может быть актуально для наших клиентов.</p>
+<p>Сигналы: <a href="https://github.com/netbox-community/netbox/releases/tag/v4.7.0-beta2" target="_blank">v4.7.0-beta2 - 2026-08-26</a></p>
+
+<hr>
+<strong>iTop</strong>:
+<p>iTop выпустил бета-версию 3.3.0 с миграцией устаревших JS-библиотек (DP). Это улучшает стабильность и безопасность платформы, но не затрагивает критерии топологии, актуальные для SL2 AI Platform (CP). Для нас это не создаёт давления, но показывает, что конкурент работает над модернизацией кода (SP).</p>
+<p>Сигналы: <a href="https://github.com/Combodo/iTop/releases/tag/3.3.0-beta3" target="_blank">3.3.0-beta3</a></p>
+
+<hr>
+<strong>Snipe-IT</strong>:
+<p>В Snipe-IT обсуждаются улучшения боковой панели навигации, включая фиксацию панели и добавление кнопки возврата вверх (DP). Это не затрагивает критерии топологии SL2 AI Platform, но показывает внимание к UX (CP). Для нас это не актуально (SP).</p>
+<p>Сигналы: [[Feature]: Adjustments to the side navigation bar functionality.](https://github.com/grokability/snipe-it/discussions/19571)</p>
+
+<hr>
+<strong>OCS Inventory</strong>:
+<p>OCS Inventory выпустил сервер 2.12.6 с исправлениями безопасности (DP). Это улучшает критерий <strong>Prod-ops / data-residency</strong>, так как повышает защищённость данных (CP). Для SL2 AI Platform это не создаёт прямого давления, но показывает внимание к безопасности в экосистеме (SP).</p>
+<p>Сигналы: <a href="https://github.com/OCSInventory-NG/OCSInventory-ocsreports/releases/tag/2.12.6" target="_blank">OCS Inventory Server 2.12.6</a></p>
+
+<hr>
+<strong>GLPI</strong>:
+<p>Нет обновлений за неделю.</p>
+
+<hr>
+<strong>Ralph</strong>:
+<p>Нет обновлений за неделю.</p>
+
+<hr>
+<strong>Azure Foundry</strong>:
+<p>Нет обновлений за неделю.</p>
+
+<hr>
+
+<h2>4. Реестр сигналов (Evidence Register)</h2>
+
+<table><thead><tr><th>ID</th><th>Платформа</th><th>Дата</th><th>Тип</th><th>Сигнал</th><th>Зрелость</th><th>Уверенность</th></tr></thead><tbody><tr><td>VTX-001</td><td>Vertex AI</td><td>26.08.2026</td><td>blog</td><td>FinOps для AI-агентов: гибкие модели биллинга и контроль затрат</td><td>GA</td><td>высокая</td></tr><tr><td>BDR-001</td><td>AWS Bedrock</td><td>26.08.2026</td><td>blog</td><td>AgentCore Evaluations с поддержкой OpenTelemetry</td><td>GA</td><td>высокая</td></tr><tr><td>AUT-001</td><td>AutoGen</td><td>28.08.2026</td><td>github</td><td>Интеграция с AlgoVoi Pay для децентрализованных платежей</td><td>preview</td><td>средняя</td></tr><tr><td>AGF-001</td><td>AgentForce</td><td>25.08.2026</td><td>blog</td><td>Новая метаданная модель с версионированием и CI/CD</td><td>GA</td><td>высокая</td></tr><tr><td>LGR-001</td><td>LangGraph</td><td>28.08.2026</td><td>github</td><td>Альфа-релиз <code>langchain.mcp</code> для MCP-интеграции</td><td>alpha</td><td>средняя</td></tr><tr><td>N8N-001</td><td>n8n</td><td>27.08.2026</td><td>blog</td><td>RBAC для AI-агентов: переход к задачно-ориентированным правилам</td><td>blog</td><td>средняя</td></tr><tr><td>NNB-001</td><td>NetBox</td><td>26.08.2026</td><td>github</td><td>Бета-релиз v4.7.0 с улучшениями для VM</td><td>beta</td><td>высокая</td></tr><tr><td>ITP-001</td><td>iTop</td><td>24.08.2026</td><td>github</td><td>Бета-релиз 3.3.0 с миграцией JS-библиотек</td><td>beta</td><td>средняя</td></tr><tr><td>SNP-001</td><td>Snipe-IT</td><td>27.08.2026</td><td>github</td><td>Улучшения боковой панели навигации</td><td>discussion</td><td>низкая</td></tr><tr><td>OCS-001</td><td>OCS Inventory</td><td>25.08.2026</td><td>github</td><td>Релиз сервера 2.12.6 с исправлениями безопасности</td><td>stable</td><td>высокая</td></tr></tbody></table>
+<hr>
+
+<h2>5. Конкурентные векторы</h2>
+
+<table><thead><tr><th>Платформа</th><th>Тип давления</th><th>Критерий SL2 AI Platform</th><th>GAP</th><th>Срок воздействия</th></tr></thead><tbody><tr><td>Vertex AI</td><td>прямой конкурент</td><td>Prod-ops / FinOps</td><td>G4</td><td>сейчас</td></tr><tr><td>AWS Bedrock</td><td>прямой конкурент</td><td>Unified API + контракт / Prod-ops</td><td>G2, G3</td><td>сейчас</td></tr><tr><td>AutoGen</td><td>экосистемное давление</td><td>Prod-ops / FinOps</td><td>G4</td><td>6м</td></tr><tr><td>AgentForce</td><td>прямой конкурент</td><td>Git-native dev</td><td>-</td><td>6м</td></tr><tr><td>LangGraph</td><td>экосистемное давление</td><td>Unified API + контракт</td><td>G2</td><td>3м</td></tr></tbody></table>
+<hr>
+<h2>6. Скоринг угроз</h2>
+
+<table><thead><tr><th>ID</th><th>Критерий</th><th>Платформа</th><th>I (1-3)</th><th>P (1-3)</th><th>U (1-3)</th><th>Score</th><th>GAP SL2 AI Platform</th></tr></thead><tbody><tr><td>THR-001</td><td>Prod-ops / FinOps</td><td>Vertex AI</td><td><span class="score-ok">2</span></td><td><span class="score-ok">3</span></td><td><span class="score-ok">2</span></td><td><span class="score-warn">12</span></td><td>G4</td></tr><tr><td>THR-002</td><td>Unified API + контракт</td><td>AWS Bedrock</td><td><span class="score-ok">3</span></td><td><span class="score-ok">3</span></td><td><span class="score-ok">2</span></td><td><span class="score-crit">18</span></td><td>G2</td></tr><tr><td>THR-003</td><td>Prod-ops / Observability</td><td>AWS Bedrock</td><td><span class="score-ok">2</span></td><td><span class="score-ok">3</span></td><td><span class="score-ok">2</span></td><td><span class="score-warn">12</span></td><td>G3</td></tr><tr><td>THR-004</td><td>Unified API + контракт</td><td>LangGraph</td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">8</span></td><td>G2</td></tr></tbody></table>
+<hr>
+<p style="font-size:.8rem;color:#64748b;margin:-8px 0 16px"><span style="color:#f87171;font-weight:bold">🔴 Score &ge; 18</span> — критично &nbsp;·&nbsp; <span style="color:#fbbf24;font-weight:bold">🟡 9–17</span> — следим &nbsp;·&nbsp; <span style="color:#4ade80">🟢 &lt; 9</span> — норма &nbsp;·&nbsp; Score&nbsp;=&nbsp;I&nbsp;&times;&nbsp;P&nbsp;&times;&nbsp;U</p>
+<h2>7. Рекомендации команде</h2>
+
+<table><thead><tr><th>Рекомендация</th><th>Владелец</th><th>Дедлайн</th><th>KPI</th></tr></thead><tbody><tr><td>Проанализировать совместимость Agent Protocol с A2A и разработать адаптер для интеграции с экосистемой MCP/OpenTelemetry</td><td>Platform team</td><td>30.09.2026</td><td>Адаптер проходит тесты на совместимость с 3+ фреймворками (LangGraph, LlamaIndex, AutoGen)</td></tr><tr><td>Внедрить базовый cost tracking per org/agent/model в SL2 AI Platform</td><td>FinOps team</td><td>31.10.2026</td><td>Метрики затрат доступны в дашборде для 100% агентов</td></tr><tr><td>Добавить поддержку OpenTelemetry для межагентного трейсинга</td><td>Platform team</td><td>30.11.2026</td><td>trace-id виден сквозь цепочку агент-&gt;агент в логах</td></tr></tbody></table>
+<hr>
+<h2>8. Self-check</h2>
+
+<ul><li><strong>Непроверенные источники этой недели</strong>: Нет. Все сигналы подтверждены официальными блогами или релизами на GitHub.</li><li><strong>Слабые допущения</strong>:</li><li>Уверенность в зрелости интеграции AutoGen с AlgoVoi оценена как "средняя", так как информация основана на обсуждении в GitHub, а не на официальном анонсе.</li><li>Уверенность в сигнале n8n (RBAC) оценена как "средняя", так как это статья в блоге, а не релиз функционала.</li><li><strong>Что отслеживать на следующей неделе</strong>:</li><li>Ожидаем ли AWS анонсирует расширение AgentCore Evaluations на другие протоколы (например, A2A)?</li><li>Будет ли анонсирована стабильная версия <code>langchain.mcp</code> в LangGraph?</li><li>Появится ли в Vertex AI поддержка self-host развёртывания для FinOps-инструментов?</li></ul>
+<hr>
+<em>Сгенерировано: 31.08.2026, 10:52:38 МСК | Источники: RSS + GitHub Releases + Mistral Large | AI Platform Monitor v3.2</em>
+<hr>
+</div>
+</body>
+</html>
