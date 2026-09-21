@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Platform Monitor v3.2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+         background: #0f1117; color: #e2e8f0; padding: 32px 16px; line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; color: #7dd3fc; border-bottom: 2px solid #1e3a5f;
+       padding-bottom: 12px; margin: 0 0 24px; }
+  h2 { font-size: 1.2rem; color: #94a3b8; text-transform: uppercase; letter-spacing: .05em;
+       margin: 32px 0 12px; border-left: 3px solid #3b82f6; padding-left: 10px; }
+  h3 { font-size: 1rem; color: #7dd3fc; margin: 20px 0 8px; }
+  p { margin-bottom: 10px; color: #cbd5e1; }
+  a { color: #60a5fa; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: #f1f5f9; }
+  hr { border: none; border-top: 1px solid #1e293b; margin: 24px 0; }
+  em { color: #94a3b8; font-style: normal; font-size: .85rem; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: .875rem; }
+  th { background: #1e293b; color: #94a3b8; text-align: left;
+       padding: 10px 12px; border-bottom: 2px solid #334155; font-weight: 600; }
+  td { padding: 9px 12px; border-bottom: 1px solid #1e293b; vertical-align: top; }
+  tr:hover td { background: #111827; }
+  ul, ol { padding-left: 24px; margin-bottom: 12px; }
+  li { color: #cbd5e1; margin-bottom: 6px; }
+  pre { background: #1e293b; padding: 12px 14px; border-radius: 6px; overflow-x: auto; margin: 12px 0; }
+  pre code { background: none; color: #e2e8f0; font-size: .85rem; white-space: pre; padding: 0; }
+  code { background: #1e293b; color: #7dd3fc; padding: 1px 5px; border-radius: 4px; font-size: .85rem; }
+  blockquote { border-left: 3px solid #3b82f6; padding: 6px 14px; margin: 12px 0;
+               color: #94a3b8; background: #111827; }
+  .green  { color: #4ade80; }
+  .yellow { color: #fbbf24; }
+  .red    { color: #f87171; }
+  .up     { color: #4ade80; font-weight: bold; }
+  .down   { color: #f87171; font-weight: bold; }
+  .warn   { color: #fbbf24; font-weight: bold; }
+  .score-crit { color: #f87171; font-weight: bold; font-size: 1.05rem; }
+  .score-warn { color: #fbbf24; font-weight: bold; }
+  .score-ok   { color: #4ade80; }
+</style>
+</head>
+<body>
+<div class="container">
+<div id='archive-link' style='display:flex;justify-content:flex-end;margin-bottom:8px'><a href='/AI-Platform-Monitor/archive.html?d=2026-09-21' target='_top' style='font-size:.9rem;color:#60a5fa;text-decoration:none'>📑 Архив отчётов →</a></div>
+<script>if(window.self!==window.top){var a=document.getElementById('archive-link');if(a)a.style.display='none';}</script>
+<h1>AI Platform Monitor v3.2 — неделя 14.09–21.09.2026</h1>
+
+<h2>1. Сводка</h2>
+
+<table><thead><tr><th>Платформа</th><th>Активность</th><th>Главный сигнал</th></tr></thead><tbody><tr><td>Vertex AI</td><td><span class="green">🟢</span></td><td>Улучшение retrieval-стека (BM25 + в AlloyDB/Cloud SQL) — усиление RAG-паттернов</td></tr><tr><td>AWS Bedrock</td><td><span class="green">🟢</span></td><td>AgentCore runtime и HyperPod Inference Gateway — managed-конкурент усиливает prod/scale возможности для агентов</td></tr><tr><td>Azure Foundry</td><td><span class="yellow">🟡</span></td><td>Foundry Dev Pack — упрощение локальной подготовки dev-окружения</td></tr><tr><td>AutoGen</td><td><span class="green">🟢</span></td><td>Активные community-дискуссии: A2A-совместимые primitive и практики защиты агентов</td></tr><tr><td>AgentForce</td><td><span class="green">🟢</span></td><td>Новые «Abilities» и hosted MCP security — улучшения intent-driven routing и безопасность хостинга агентов</td></tr><tr><td>LangGraph</td><td><span class="green">🟢</span></td><td>Публикация typesafe-пакетов (langchain-typesafe) — повышение удобства dev-first разработки</td></tr><tr><td>n8n</td><td><span class="green">🟢</span></td><td>Руководства по снижению latency и Gateway credits — ускорение AI-workflow и упрощение доступа к моделям</td></tr><tr><td>NetBox</td><td><span class="green">🟢</span></td><td>Регулярные багфиксы и обсуждения стабильности v4.7.1</td></tr><tr><td>GLPI</td><td><span class="green">🟢</span></td><td>Несколько security-релизов (рекомендация к апгрейду)</td></tr><tr><td>iTop</td><td><span class="yellow">🟡</span></td><td>Релиз 3.3.0 (RC/релиз пакета инструментов)</td></tr><tr><td>Ralph</td><td><span class="red">🔴</span></td><td>нет изменений</td></tr><tr><td>Snipe-IT</td><td><span class="yellow">🟡</span></td><td>Обсуждения багов при апгрейде и видимости локаций</td></tr><tr><td>OCS Inventory</td><td><span class="red">🔴</span></td><td>нет изменений</td></tr></tbody></table>
+<p>🟢 активная неделя (3+ обновлений) 🟡 умеренная (1-2) 🔴 тишина</p>
+
+<hr>
+
+<p style="font-size:.8rem;color:#64748b;margin:-8px 0 16px">🟢 активная неделя (3+ обновлений) &nbsp;·&nbsp; 🟡 умеренная (1-2) &nbsp;·&nbsp; 🔴 тишина</p>
+<h2>2. Изменения по критериям топологии</h2>
+
+<p>Обозначения: ↑ улучшила позицию (новость/фича релевантна критерию)  ↓ ухудшила/отказалась  ⚠ анонс или в разработке  - без изменений. В скобках — краткая причина (только если есть движение и есть источник).</p>
+
+<table><thead><tr><th>Критерий</th><th>Vertex AI</th><th>AWS Bedrock</th><th>Azure Foundry</th><th>AutoGen</th><th>AgentForce</th><th>LangGraph</th><th>n8n</th><th>NetBox</th><th>GLPI</th><th>iTop</th><th>Ralph</th><th>Snipe-IT</th><th>OCS Inventory</th></tr></thead><tbody><tr><td>Multi-tenancy</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Self-host</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Code+No-code</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span> (больше примеров/доступности)</td><td>-</td><td><span class="up">↑</span> (typesafe -&gt; удобство dev)</td><td><span class="up">↑</span> (Gateway credits, no-code flows)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Git-native dev</td><td>-</td><td>-</td><td><span class="up">↑</span> (Foundry Dev Pack упрощает setup)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Indep. deploy</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Indep. scale</td><td>-</td><td><span class="up">↑</span> (AgentCore runtime, HyperPod Inference Gateway)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Unified API + контракт</td><td>-</td><td>-</td><td>-</td><td><span class="warn">⚠</span> (A2A-related primitives в обсуждении)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>LLM routing</td><td><span class="up">↑</span> (BM25/retrieval улучшения)</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span> (Abilities — intent-driven tool selection)</td><td>-</td><td><span class="up">↑</span> (model routing, caching patterns)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Secrets/tenant</td><td>-</td><td>-</td><td>-</td><td>-</td><td><span class="up">↑</span> (hosted MCP security статьи)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Prod-ops</td><td>-</td><td><span class="up">↑</span> (HyperPod, SageMaker inference features)</td><td>-</td><td><span class="up">↑</span> (agent auth / loop prevention обсуждения)</td><td>-</td><td>-</td><td><span class="up">↑</span> (latency patterns, outbox, rate limiting)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></tbody></table>
+<p>Примечание: отметки сделаны только там, где в явной форме появилась новость/релиз, релевантный критерию. Во всех остальных случаях — без изменений.</p>
+
+<hr>
+
+<p style="font-size:.8rem;color:#64748b;margin:-8px 0 16px"><span style="color:#4ade80;font-weight:bold">↑</span> улучшила позицию &nbsp;·&nbsp; <span style="color:#f87171;font-weight:bold">↓</span> ухудшила &nbsp;·&nbsp; <span style="color:#fbbf24;font-weight:bold">⚠</span> анонс / в разработке &nbsp;·&nbsp; <strong>-</strong> без изменений</p>
+<h2>3. Детали по платформам</h2>
+
+<p>Vertex AI: Google объявил native BM25 ranking для AlloyDB и Cloud SQL, подчёркивая, что классический vector search хорошо работает с семантикой, но слаб на точные альфа‑числовые совпадения; BM25 дополняет retrieval-стек (DP). Это конкретное улучшение retrieval-инструментов усиливает их возможности для RAG-сценариев и внутренних data-agent архитектур, то есть повышает качество маршрутизации запросов к данным и relevance-aware routing (CP). Для SL2 AI Platform это усиливает конкурентное давление в слое LLM routing / retrieval: крупный провайдер делает RAG-паттерны более надёжными для своих клиентов, что затрагивает наш тезис о преимуществах LLM-routing (SP → затрагивает G6 как дополнительное давление на наш LLM gateway/обвязку). Следим за тем, пойдёт ли Google дальше по интеграции retrieval в agent-runtime (например, демонстрации RAG-систем с управлением агентов). Сигналы: <a href="https://cloud.google.com/blog/products/databases/native-bm25-search-in-alloydb-and-cloud-sql/" target="_blank">Announcing Native BM25 Ranking in AlloyDB and Cloud SQL</a></p>
+
+<p>AWS Bedrock: на неделе AWS опубликовал ряд релизов и гайдов: новый AgentCore runtime (фокус на скорость старта и управление памятью), публикации по миграции multi-model агентных систем на Bedrock AgentCore и анонс Amazon SageMaker HyperPod Inference Gateway — Kubernetes‑native routing для GPU-aware placement (DP). В топологии это усиливает их позицию по Indep. scale (позволяет более эффективно масштабировать inference и снизить latency) и по Prod-ops (инструменты для мониторинга/alarms/managed endpoints) (CP). Для SL2 AI Platform это прямое конкурентное давление: managed-провайдер сокращает инфраструктурную стоимость владения агентами у клиентов и даёт им быстрый путь к elastic/cheap inference, что вскрывает наш GAP в Prod-ops и FinOps (G3/G4). Однако Bedrock остаётся managed/SaaS и не заменяет self-host для строгих требований по резидентности — это сохраняет наше конкурентное преимущество по Self-host. Нужен мониторинг их дальнейшей работы в части per-agent billing и per-agent observability. Сигналы: <a href="https://aws.amazon.com/blogs/machine-learning/the-new-agentcore-runtime-elastic-optimized-and-consistently-fast-starts/" target="_blank">The new AgentCore runtime: Elastic, optimized, and consistently fast starts</a>, <a href="https://aws.amazon.com/blogs/machine-learning/migrating-multi-model-ai-agents-to-amazon-bedrock-agentcore-runtime/" target="_blank">Migrating multi-model AI agents to Amazon Bedrock AgentCore runtime</a>, <a href="https://aws.amazon.com/blogs/machine-learning/introducing-amazon-sagemaker-hyperpod-inference-gateway/" target="_blank">Introducing Amazon SageMaker HyperPod Inference Gateway</a></p>
+
+<p>Azure Foundry: Microsoft выпустил Foundry Dev Pack — единый инсталлятор для подготовка машины разработчика к работе с Foundry (DP). Это улучшает onboarding и снижает трение при старте разработки, то есть позитивно влияет на developer experience и частично на Git-native / dev flow (CP). Для SL2 AI Platform это не меняет наш self-host/gap‑профиль, но усиливает давление по части developer enablement: если крупные облака делают «one command» setup, это увеличивает ожидания клиентов по простоте старта (SP → затрагивает G1 — отсутствие visual builder и порог входа). Сигнал: <a href="https://devblogs.microsoft.com/foundry/foundry-devpack-announcement/" target="_blank">Introducing Foundry Dev Pack: One Command to Start Building</a></p>
+
+<p>AutoGen: в сообществе Microsoft AutoGen активные обсуждения — от предотвращения «silent loops/stampedes» у агентов до публикации open A2A‑совместимой версии Compliance Gate (DP). Есть предложения по Latent Space протоколу для межагентной коммуникации и дискуссии по интеграциям с Bedrock (CP). Для SL2 AI Platform это сигнал ускоряющейся конвергенции вокруг A2A‑практик и операционных примитивов для multi-agent systems, что прямо затрагивает наш GAP G2 (Agent Protocol не совместим с A2A) и G3 (prod-ops вопросы: loop prevention, agent auth). Нужно отслеживать стандартизацию A2A и доступность референс-primitive, чтобы планировать адаптер A2A в будущем. Сигналы: <a href="https://github.com/microsoft/autogen/discussions/7898" target="_blank">AlgoVoi open Decision chain (Apache-2.0)</a>, <a href="https://github.com/microsoft/autogen/discussions/8135" target="_blank">How are you guys stopping agents from silent loops/stampedes?</a></p>
+
+<p>AgentForce (Salesforce): серия публикаций по Hosted MCP Server, security best practices и появление «Abilities» в Vibes (intent-driven tool selection) — DP. Это усиливает их возможности по intent‑driven routing и enterprise integrations, а также по безопасности hosted runtimes (CP). Для SL2 AI Platform это прямое конкурентное давление в сегменте enterprise-agent orchestration и LLM routing (Abilities похожи на наши intent-routing), особенно у клиентов CRM/enterprise — затрагивает G6 (LLM gateway / routing) и G5 (если клиенты требуют self-hosted observability/guardrails). В то же время Salesforce — клауд/hosted-first, и у нас сохраняется преимущество self-host. Сигналы: <a href="https://developer.salesforce.com/blogs/2026/09/intent-driven-tool-selection-using-abilities-in-agentforce-vibes-jp" target="_blank">開発の意図に応じてツールを自動で選択 – Agentforce Vibesの新機能「アビリティ」</a>, <a href="https://developer.salesforce.com/blogs/2026/09/connect-slack-to-salesforce-with-hosted-mcp-servers-jp" target="_blank">Hosted MCP Serverを使ってSalesforceにSlackを接続する</a></p>
+
+<p>LangGraph (langchain): релизы пакетов, включая первые alpha релизы langchain-typesafe и основную ветку langchain 1.4.x (DP). Это повышает удобство разработки и типовую безопасность для разработчиков multi-agent/workflow (CP). Для SL2 AI Platform это усиливает давление со стороны open-source SDK-экосистемы: проще писать интеграции и шаблоны агентов, что повышает ожидания по developer experience (SP → затрагивает G7 по зрелости нашего community/docset — нам нужно активнее работать с примерами и библиотеками). Сигналы: <a href="https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.2" target="_blank">langchain==1.4.2</a>, <a href="https://github.com/langchain-ai/langchain/releases/tag/langchain-typesafe%3D%3D0.0.1a3" target="_blank">langchain-typesafe==0.0.1a3</a></p>
+
+<p>n8n: выпустили несколько материалов по практикам снижения AI-workflow latency (model routing, caching, parallel execution), статья про Gateway credits (возможность использовать модели/инструменты в облаке без провайдера) и регулярные релизы (DP). Это улучшает их позицию как оркестратора workflow с фичами model routing и упрощённым доступом к моделям (CP). Для SL2 AI Platform это конкурентное давление в двух областях: LLM routing / gateway (они упрощают запуск RAG/AI‑workflow для не‑infra команд) и Prod-ops (latency-patterns, rate limiting) — затрагивает наши G6 и G3/G4. Особенно важно отслеживать, насколько Gateway credits будут приняты командами с требованиями по приватности. Сигналы: <a href="https://blog.n8n.io/reducing-ai-workflow-latency/" target="_blank">Reducing AI Workflow Latency: Patterns That Actually Work</a>, <a href="https://blog.n8n.io/gateway-credits/" target="_blank">Try new models and services, skip the account setup</a></p>
+
+<p>NetBox: релиз v4.7.1 и серия обсуждений багов/feature-requests (DP). Это обычный цикл поддержки/стабилизации OSS-инструмента; прямого влияния на критерии SL2 AI Platform нет (CP). Для SL2 AI Platform — нет изменений в позиционировании, но релизы сообщества указывают на активность и внимание к stability практикам у OSS-проектов. Сигнал: <a href="https://github.com/netbox-community/netbox/releases/tag/v4.7.1" target="_blank">v4.7.1 - 2026-09-15</a></p>
+
+<p>GLPI: несколько security-релизов (11.0.9, 10.0.27, RC 12.0.0-rc2) — DP. Это призыв к апгрейду для пользователей; влияние на SL2 AI Platform отсутствует (CP). Сигнал: <a href="https://github.com/glpi-project/glpi/releases/tag/11.0.9" target="_blank">11.0.9</a></p>
+
+<p>iTop: релиз 3.3.0 (DP). Технический релиз ITSM-инструмента, без видимого влияния на нашу топологию (CP). Сигнал: <a href="https://github.com/Combodo/iTop/releases/tag/3.3.0" target="_blank">3.3.0</a></p>
+
+<p>Snipe-IT: обсуждения проблем при апгрейде и баги видимости локаций (DP). Это операционные/поддерживающие обсуждения, прямого влияния на SL2 AI Platform нет (CP). Сигналы: <a href="https://github.com/grokability/snipe-it/discussions/18931" target="_blank">Issue upgrading to v8.4.1 (Permission Issue?)</a>, [[Bug]: Locations without company assignment no longer visible since v8.6.3](https://github.com/grokability/snipe-it/discussions/19672)</p>
+
+<hr>
+
+<h2>4. Реестр сигналов (Evidence Register)</h2>
+
+<table><thead><tr><th>ID</th><th>Платформа</th><th>Дата</th><th>Тип</th><th>Сигнал</th><th>Зрелость</th><th>Уверенность</th></tr></thead><tbody><tr><td>VTX-001</td><td>Vertex AI</td><td>2026-09-18</td><td>blog</td><td>Native BM25 Ranking in AlloyDB and Cloud SQL</td><td>GA/announcement</td><td>высокая</td></tr><tr><td>BDR-001</td><td>AWS Bedrock</td><td>2026-09-18</td><td>blog</td><td>AgentCore Runtime (elastic starts, memory reclaim)</td><td>GA</td><td>высокая</td></tr><tr><td>BDR-002</td><td>AWS Bedrock</td><td>2026-09-18</td><td>blog</td><td>Amazon SageMaker HyperPod Inference Gateway (K8s GPU-aware routing)</td><td>GA</td><td>высокая</td></tr><tr><td>BDR-003</td><td>AWS Bedrock</td><td>2026-09-18</td><td>blog</td><td>Kimi K3 on Bedrock (new open-weight model availability)</td><td>GA</td><td>высокая</td></tr><tr><td>AZR-001</td><td>Azure Foundry</td><td>2026-09-15</td><td>blog</td><td>Foundry Dev Pack (one-command dev setup)</td><td>GA/announcement</td><td>высокая</td></tr><tr><td>AUT-001</td><td>AutoGen</td><td>2026-09-20</td><td>github/discussion</td><td>AlgoVoi open Decision chain (A2A edition)</td><td>idea/preview</td><td>средняя</td></tr><tr><td>AUT-002</td><td>AutoGen</td><td>2026-09-20</td><td>github/discussion</td><td>Community discussion: loop prevention and agent auth</td><td>idea/engineering-discussion</td><td>средняя</td></tr><tr><td>AGF-001</td><td>AgentForce</td><td>2026-09-16</td><td>blog</td><td>Abilities (intent-driven tool selection)</td><td>GA/feature announcement</td><td>высокая</td></tr><tr><td>AGF-002</td><td>AgentForce</td><td>2026-09-16</td><td>blog</td><td>Hosted MCP Server integration &amp; security guidance</td><td>docs/blog</td><td>высокая</td></tr><tr><td>LGR-001</td><td>LangGraph/langchain</td><td>2026-09-18</td><td>release</td><td>langchain==1.4.2 + typesafe initial alphas</td><td>release</td><td>высокая</td></tr><tr><td>N8N-001</td><td>n8n</td><td>2026-09-19</td><td>blog</td><td>Reducing AI Workflow Latency (patterns: model routing, caching)</td><td>blog/guide</td><td>высокая</td></tr><tr><td>N8N-002</td><td>n8n</td><td>2026-09-16</td><td>blog</td><td>Gateway credits for models/tools without provider account</td><td>GA/feature</td><td>высокая</td></tr><tr><td>NET-001</td><td>NetBox</td><td>2026-09-15</td><td>release</td><td>NetBox v4.7.1 release &amp; community issues</td><td>release</td><td>высокая</td></tr><tr><td>GLP-001</td><td>GLPI</td><td>2026-09-16</td><td>release</td><td>Security releases (11.0.9, 10.0.27, RC12)</td><td>release</td><td>высокая</td></tr><tr><td>ITP-001</td><td>iTop</td><td>2026-09-15</td><td>release</td><td>iTop 3.3.0 release</td><td>release</td><td>высокая</td></tr><tr><td>SNI-001</td><td>Snipe-IT</td><td>2026-09-18/21</td><td>discussion</td><td>Upgrade issues and visibility bugs in community discussions</td><td>discussion</td><td>средняя</td></tr></tbody></table>
+<hr>
+
+<h2>5. Конкурентные векторы</h2>
+
+<table><thead><tr><th>Платформа</th><th>Тип давления</th><th>Критерий SL2 AI Platform</th><th>GAP</th><th>Срок воздействия</th></tr></thead><tbody><tr><td>AWS Bedrock</td><td>прямой конкурент</td><td>Indep. scale / Prod-ops</td><td>G3, G4</td><td>сейчас</td></tr><tr><td>Vertex AI</td><td>экосистемное давление</td><td>LLM routing / retrieval</td><td>G6</td><td>сейчас — 3м</td></tr><tr><td>n8n</td><td>экосистемное давление (orchestration + gateway)</td><td>LLM gateway / Prod-ops</td><td>G6, G3</td><td>3м</td></tr><tr><td>AutoGen</td><td>стандартизация / community-led primitives (A2A)</td><td>Unified API / Agent-to-Agent</td><td>G2</td><td>6–12м</td></tr><tr><td>AgentForce (Salesforce)</td><td>прямой конкурент в enterprise</td><td>LLM routing / tenant security</td><td>G6, G5</td><td>сейчас</td></tr><tr><td>LangGraph (langchain)</td><td>developer ecosystem pressure</td><td>Code+No-code (dev experience)</td><td>G7</td><td>сейчас</td></tr><tr><td>Остальные (NetBox/GLPI/iTop/Snipe-IT)</td><td>н/п</td><td>н/п</td><td>н/п</td><td>н/п</td></tr></tbody></table>
+<p>Если активных векторов нет — выше приведены все релевантные на этой неделе.</p>
+
+<hr>
+
+<h2>6. Скоринг угроз</h2>
+
+<p>Score = I × P × U (каждый множитель 1–3). I = влияние на позицию SL2 AI Platform, P = вероятность реализации, U = срочность.</p>
+
+<table><thead><tr><th>ID</th><th>Критерий</th><th>Платформа (источник)</th><th>I (1-3)</th><th>P (1-3)</th><th>U (1-3)</th><th>Score</th><th>GAP SL2 AI Platform</th></tr></thead><tbody><tr><td>THR-001</td><td>Indep. scale / Prod-ops</td><td>AWS Bedrock (AgentCore runtime / HyperPod) — https://aws.amazon.com/blogs/machine-learning/the-new-agentcore-runtime-elastic-optimized-and-consistently-fast-starts/</td><td><span class="score-ok">3</span></td><td><span class="score-ok">3</span></td><td><span class="score-ok">2</span></td><td><span class="score-crit">18</span></td><td>G3, G4</td></tr><tr><td>THR-002</td><td>LLM gateway / access friction</td><td>n8n (Gateway credits) — https://blog.n8n.io/gateway-credits/</td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">8</span></td><td>G6</td></tr><tr><td>THR-003</td><td>Unified API / A2A standardization</td><td>AutoGen (AlgoVoi A2A edition) — https://github.com/microsoft/autogen/discussions/7898</td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">2</span></td><td><span class="score-ok">8</span></td><td>G2</td></tr></tbody></table>
+<p>Интерпретация: Score ≥ 18 — критично (🔴). В этой неделе критическая угроза — THR-001 (AWS Bedrock). Остальные — отслеживаем (🟡/зелёная зона).</p>
+
+<hr>
+
+<p style="font-size:.8rem;color:#64748b;margin:-8px 0 16px"><span style="color:#f87171;font-weight:bold">🔴 Score &ge; 18</span> — критично &nbsp;·&nbsp; <span style="color:#fbbf24;font-weight:bold">🟡 9–17</span> — следим &nbsp;·&nbsp; <span style="color:#4ade80">🟢 &lt; 9</span> — норма &nbsp;·&nbsp; Score&nbsp;=&nbsp;I&nbsp;&times;&nbsp;P&nbsp;&times;&nbsp;U</p>
+<h2>7. Рекомендации команде</h2>
+
+<p>По каждой угрозе со Score ≥ 9 — конкретное действие с владельцем, дедлайном и KPI.</p>
+
+<table><thead><tr><th>Рекомендация</th><th>Владелец</th><th>Дедлайн</th><th>KPI</th></tr></thead><tbody><tr><td>Внедрить inter-agent distributed tracing (OpenTelemetry) и связать spans между /invoke вызовами агентов; обеспечить end-to-end trace-id видимый в platform logs и LangSmith/зеркале</td><td>Platform team (Backend/Infra)</td><td>01.08.2026</td><td>Trace-id проходит сквозь цепочку agent-&gt;agent в тестовом сценарии (end-to-end), latency/span виден в dashboard</td></tr><tr><td>Добавить per-agent и per-org cost-tracking (FinOps): модель/compute/requests breakdown в UI/API, экспонировать chargeback API</td><td>Product + FinOps + Billing</td><td>01.11.2026</td><td>В UI видно cost-per-agent и cost-per-model за последние 30 дней; тестовая org получает корректный breakdown</td></tr><tr><td>(оперативно) Обновить competitive FAQ и sales‑battlecards: чётко фиксировать self-host преимущества SL2 AI Platform (data residency, multi-tenancy, per-agent lifecycle) и различия с Bedrock</td><td>GTM/Product Marketing</td><td>15.10.2026</td><td>Обновлённые battlecards, готовые ответы на 10 частых вопросов sales, время подготовки RFP‑ответа &lt; 24ч</td></tr></tbody></table>
+<p>Критических рекомендаций на эту неделю больше нет (только перечисленное выше для THR-001). Для угроз с Score &lt; 9 — мониторинг и раннее предупреждение (см. Self-check).</p>
+
+<hr>
+
+<h2>8. Self-check</h2>
+
+<ul><li>Непроверенные источники этой недели:</li><li>AutoGen — множество дискуссий на GitHub (идеа/пулы); высокая активность, но формальный стандарт A2A ещё не утверждён (источники: github discussions). Уверенность — средняя.  </li><li>n8n Gateway credits — анонс фичи в блоге (высокая уверенность в релизе), но неизвестны метрики принятия и enterprise‑ограничения (что важно для оценки реальной угрозы).</li><li>Bedrock — публичные релизы ясны, но детали per-agent billing/observability adoption — не опубликованы.</li></ul>
+<ul><li>Слабые допущения:</li><li>Предположение, что Bedrock AgentCore быстро переведёт значимые enterprise‑флаги клиентов от self-host к managed; возможно, крупные регулируемые клиенты останутся на self-host. Это допущение может оказаться чрезмерно пессимистичным.</li><li>Оценки влияния AutoGen на стандарт A2A сделаны на основании community‑релизов; реальная отраслeвая консолидация может занять больше времени.</li></ul>
+<ul><li>Что отслеживать на следующей неделе (t):</li></ul>  1. Появление у AWS Bedrock публичных кейсов «per-agent billing» или per-agent observability/trace примеров (проверка BDR-001/BDR-002) — мониторить AWS блоги и customer stories.  
+<p>  2. Adoption/metrics по n8n Gateway credits: появление кейсов enterprise/соглашений о приватности (NDA), и/или релиз подробной документации по security/residency.  </p>
+<p>  3. Дальнейшие шаги AutoGen в направлении A2A: новые репозитории/спецификации, принятие другими OSS-проектами (langchain и др.).</p>
+
+<p>На этом отчёт заканчивается.</p>
+
+<hr>
+<em>Сгенерировано: 21.09.2026, 06:02:08 МСК | Источники: RSS + GitHub Releases + Mistral Large | AI Platform Monitor v3.2</em>
+<hr>
+</div>
+</body>
+</html>
